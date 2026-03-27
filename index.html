@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serviço Executado</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      margin: 0;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #111827;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      background: #1f2937;
+      color: #fff;
+      font-size: 15px;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .row div {
+      flex: 1;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .copy {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .copy:hover {
+      background: #2563eb;
+    }
+
+    .whats {
+      background: #22c55e;
+      color: white;
+    }
+
+    .whats:hover {
+      background: #16a34a;
+    }
+
+    .success {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #22c55e;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>🛠️ Serviço Executado</h2>
+
+    <label>👨‍🔧 Técnico</label>
+    <input id="nome" placeholder="Digite o nome">
+
+    <div class="row">
+      <div>
+        <label>🕒 Início</label>
+        <input id="inicio" type="time">
+      </div>
+      <div>
+        <label>🕓 Fim</label>
+        <input id="fim" type="time">
+      </div>
+    </div>
+
+    <label>🏭 Máquina / Equipamento</label>
+    <input id="maquina" placeholder="Ex: Prensa 01">
+
+    <label>⚙️ Tipo de manutenção</label>
+    <select id="tipo">
+      <option value="">Selecione</option>
+      <option value="Elétrica">Elétrica</option>
+      <option value="Mecânica">Mecânica</option>
+      <option value="Elétrica e Mecânica">Elétrica e Mecânica</option>
+    </select>
+
+    <label>📍 Local</label>
+    <input id="local" placeholder="Ex: Setor A">
+
+    <label>🛠️ Serviço realizado</label>
+    <textarea id="servico" placeholder="Descreva o serviço"></textarea>
+
+    <label>📝 Observações</label>
+    <textarea id="obs" placeholder="Opcional"></textarea>
+
+    <button class="copy" onclick="copiar()">📋 Copiar texto</button>
+    <button class="whats" onclick="enviarWhats()">📤 Enviar no WhatsApp</button>
+
+    <div class="success" id="msg">✔ Copiado com sucesso!</div>
+  </div>
+
+  <script>
+    function gerarTexto() {
+      const nome = document.getElementById("nome").value;
+      const inicio = document.getElementById("inicio").value;
+      const fim = document.getElementById("fim").value;
+      const maquina = document.getElementById("maquina").value;
+      const tipo = document.getElementById("tipo").value;
+      const local = document.getElementById("local").value;
+      const servico = document.getElementById("servico").value;
+      const obs = document.getElementById("obs").value;
+
+      return `🛠️ SERVIÇO EXECUTADO
+
+👨‍🔧 Técnico: ${nome}
+🕒 Início: ${inicio}
+🕓 Término: ${fim}
+🏭 Máquina: ${maquina}
+⚙️ Tipo: ${tipo}
+📍 Local: ${local}
+🛠️ Serviço: ${servico}
+📝 Obs: ${obs}`;
+    }
+
+    function copiar() {
+      const texto = gerarTexto();
+      navigator.clipboard.writeText(texto);
+
+      const msg = document.getElementById("msg");
+      msg.style.display = "block";
+
+      setTimeout(() => {
+        msg.style.display = "none";
+      }, 2000);
+    }
+
+    function enviarWhats() {
+      const texto = gerarTexto();
+      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(texto)}`;
+      window.open(url, "_blank");
+    }
+  </script>
+
+</body>
+</html>
