@@ -146,26 +146,33 @@
 
   <script>
     function gerarTexto() {
-      const nome = document.getElementById("nome").value;
-      const inicio = document.getElementById("inicio").value;
-      const fim = document.getElementById("fim").value;
-      const maquina = document.getElementById("maquina").value;
-      const tipo = document.getElementById("tipo").value;
-      const local = document.getElementById("local").value;
-      const servico = document.getElementById("servico").value;
-      const obs = document.getElementById("obs").value;
+  const nome = document.getElementById("nome").value;
+  const inicio = document.getElementById("inicio").value;
+  const fim = document.getElementById("fim").value;
+  const maquina = document.getElementById("maquina").value;
+  const tipo = document.getElementById("tipo").value;
+  const local = document.getElementById("local").value;
+  const servico = document.getElementById("servico").value;
+  const obs = document.getElementById("obs").value;
 
-      return `🛠️ SERVIÇO EXECUTADO
+  return `🛠️ SERVIÇO EXECUTADO
 
 👨‍🔧 Técnico: ${nome}
+
 🕒 Início: ${inicio}
 🕓 Término: ${fim}
+
 🏭 Máquina: ${maquina}
 ⚙️ Tipo: ${tipo}
+
 📍 Local: ${local}
-🛠️ Serviço: ${servico}
-📝 Obs: ${obs}`;
-    }
+
+🛠️ Serviço:
+${servico}
+
+📝 Observação:
+${obs}`;
+}
 
     function copiar() {
       const texto = gerarTexto();
